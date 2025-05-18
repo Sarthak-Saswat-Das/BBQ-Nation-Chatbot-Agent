@@ -1,0 +1,457 @@
+{
+  "agent_id": "",
+  "channel": "voice",
+  "last_modification_timestamp": 1747569800225,
+  "agent_name": "BBQ Nation ",
+  "response_engine": {
+    "type": "conversation-flow",
+    "version": 7,
+    "conversation_flow_id": "conversation_flow_b4fbdbd6b0fd"
+  },
+  "language": "en-US",
+  "opt_out_sensitive_data_storage": false,
+  "opt_in_signed_url": false,
+  "version": 7,
+  "is_published": false,
+  "version_title": "",
+  "post_call_analysis_model": "gpt-4o-mini",
+  "voice_id": "11labs-Cimo",
+  "max_call_duration_ms": 3600000,
+  "interruption_sensitivity": 0.8,
+  "voicemail_detection_timeout_ms": 30000,
+  "allow_user_dtmf": true,
+  "user_dtmf_options": {},
+  "retellLlmData": null,
+  "conversationFlow": {
+    "conversation_flow_id": "conversation_flow_b4fbdbd6b0fd",
+    "version": 7,
+    "nodes": [
+      {
+        "name": "START",
+        "edges": [
+          {
+            "destination_node_id": "node-1747488411263",
+            "id": "edge-1747487627212",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "When the user mentions a city (Delhi or Bangalore), transition to Collect City."
+            }
+          }
+        ],
+        "id": "node-1747487627212",
+        "type": "conversation",
+        "display_position": {
+          "x": 573.5714285714286,
+          "y": 387.85714285714283
+        },
+        "instruction": {
+          "type": "prompt",
+          "text": "## OBJECTIVES:\n    - Inform the prospect/customer about the Barbeque Nation booking system.\n## Instructions:\n    1. **Inform the prospect/customer about the Barbeque Nation booking system**:\n            1.1 Inform the prospect about the Barbeque Nation booking system.\n        **Next step**:\n            1.3 Move to collecting city information.\n## Prohibited Actions:\n    **Under no circumstances you should do the following**:\n        - Saying any of the following words: unavailable, closed, cannot help\n       \n## Additional Context:\n    - This is the initial greeting for customers contacting Barbeque Nation.\n    - Be warm and welcoming in your introduction.\n     \n## Examples:\n    - Example for 1.1:\n        - \"Hello and welcome to Barbeque Nation! I'm here to help you with bookings, modifications, cancellations, or to answer any questions you might have about our restaurants. How may I assist you today?\"\n"
+        }
+      },
+      {
+        "name": "Collect City",
+        "edges": [
+          {
+            "destination_node_id": "node-1747488506585",
+            "id": "edge-1747488411263",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "When the user provides a valid outlet/location in their city, transition to Discover"
+            }
+          },
+          {
+            "destination_node_id": "node-1747488467079",
+            "id": "edge-1747490143513",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "When user Provides their City only move to Collect Location in City"
+            }
+          }
+        ],
+        "id": "node-1747488411263",
+        "type": "conversation",
+        "display_position": {
+          "x": 592.0650620143917,
+          "y": 949.9811512358558
+        },
+        "instruction": {
+          "type": "prompt",
+          "text": "## OBJECTIVES:\n    - Collect the city for which the customer is calling.\n## Instructions:\n    1. **Ask for where they are looking for a booking**:\n        - Ask the customer which city they are interested in.\n        - **Verification**: \n            - Once the location is captured, verify if the city is available (Delhi or Bangalore).\n## Prohibited Actions:\n    **Under no circumstances you should do the following**:  \n        - Give a list of properties to the customer in this state.\n        - Not clarifying with the customer if the city is not available in our locations.\n        - Asking the customer about whether they like to know more about the property or the amenities.\n        - Giving additional information like prices when the customer is not asking for it.\n## Additional Context:\n    - Strictly don't trigger under any circumstance.\n    - The available cities are Delhi and Bangalore only.\n    - If the city mentioned by the customer is not Delhi or Bangalore, then clarify that we only have restaurants in Delhi and Bangalore.\n## Examples:\n    - **Example for 1**:\n       \"Could you please tell me which city you're interested in - Delhi or Bangalore?\"\n"
+        }
+      },
+      {
+        "name": "Collect Location in City",
+        "edges": [
+          {
+            "destination_node_id": "node-1747488506585",
+            "id": "edge-1747488467079",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "When the user provides a valid outlet/location in the selected city, transition to Discover."
+            }
+          }
+        ],
+        "id": "node-1747488467079",
+        "type": "conversation",
+        "display_position": {
+          "x": 1186.6094701198217,
+          "y": 1429.0217587302893
+        },
+        "instruction": {
+          "type": "prompt",
+          "text": "## OBJECTIVES:\n    - Collect the specific Barbeque Nation outlet in the selected city.\n## Instructions:\n    1. **Ask for customer's preferred location**:\n        - Based on the city selected, provide outlet options.\n        - Ask which specific outlet they prefer.\n\n## Prohibited Actions:\n    **Under no circumstances you should do the following**:\n        - Failing to collect or confirm the customer's preferred outlet.\n        - Collecting any information other than the preferred outlet.\n        - Hallucinating outlets that don't exist in that city.\n    \n## Additional Context:\n    - For Delhi: Unity Mall (Janakpuri), Vasant Kunj, and Connaught Place outlets are available.\n    - For Bangalore: Koramangala, JP Nagar, and other available outlets.\n    - Confirm the outlet by repeating it back to the customer.\n\n## Examples:\n    - **Example for 1.1**:\n       \"In {{city}}, we have outlets at [list outlets]. Which one would you prefer to visit?\"\n"
+        }
+      },
+      {
+        "name": "Discover ",
+        "edges": [
+          {
+            "destination_node_id": "node-1747488836440",
+            "id": "edge-1747488506585",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "If the user wants to make a new booking, transition to Collect Date & Time (New Booking)"
+            }
+          },
+          {
+            "destination_node_id": "node-1747489229656",
+            "id": "edge-1747489940490",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "If the user wants to modify or cancel a booking, transition to Collect Date & Time (Cancellations and Modifications)"
+            }
+          },
+          {
+            "destination_node_id": "node-1747488542844",
+            "id": "edge-1747490226431",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "If the user has feedback or a complaint, transition to Feedback/Complaint.\n\n"
+            }
+          }
+        ],
+        "id": "node-1747488506585",
+        "type": "conversation",
+        "display_position": {
+          "x": 535.1690342148479,
+          "y": 1598.3047350599109
+        },
+        "instruction": {
+          "type": "prompt",
+          "text": "## OBJECTIVES:\n    - Determine the customer's intent (new booking, modification/cancellation, or feedback/complaint).\n## Instructions:\n    1. **Inform the customer about the available services**:\n            1.1 Ask what type of assistance they need.\n        **Next step**:\n            1.3 Route to appropriate service based on response.\n## Prohibited Actions:\n    **Under no circumstances you should do the following**:\n        - Saying any of the following words: cannot, impossible, unavailable\n        - Making assumptions about what service the customer needs\n       \n## Additional Context:\n    - Listen carefully to determine if they want to make a new booking, modify/cancel an existing booking, or provide feedback/complaint.\n     \n## Examples:\n    - Example for 1.1:\n        - \"How can I assist you today with {{selected_outlet}} in {{city}}? Would you like to make a new booking, modify or cancel an existing reservation, or do you have feedback or a question about our services?\"\n"
+        }
+      },
+      {
+        "name": "Feedback/Complaint",
+        "edges": [
+          {
+            "destination_node_id": "node-1747488722473",
+            "id": "edge-1747488542844",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "When the user provides feedback or a complaint, transition to Apologise and Escalate"
+            }
+          }
+        ],
+        "id": "node-1747488542844",
+        "type": "conversation",
+        "display_position": {
+          "x": 90.51860206013379,
+          "y": 1606.34058624343
+        },
+        "instruction": {
+          "type": "prompt",
+          "text": "## OBJECTIVES:\n    - Collect the customer's feedback or complaint details.\n## Instructions:\n    1. **Ask for customer's feedback or complaint**:\n        - Listen to their concerns attentively.\n        - Collect specific details about their experience.\n\n## Prohibited Actions:\n    **Under no circumstances you should do the following**:\n        - Dismissing the customer's concerns.\n        - Failing to collect comprehensive details.\n        - Making excuses or being defensive.\n    \n## Additional Context:\n    - Show empathy and understanding.\n    - Collect the date and time of their visit if relevant.\n    - Ask for specific details about what went wrong or what they enjoyed.\n\n## Examples:\n    - **Example for 1.1**:\n       \"I'm sorry to hear you had an issue. Could you please share more details about your experience so we can address it properly?\"\n"
+        }
+      },
+      {
+        "name": "Collect Callback Date and Time",
+        "edges": [
+          {
+            "destination_node_id": "node-1747489049480",
+            "id": "edge-1747488624654",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Once callback date and time are collected, transition to Confirm Final Changes"
+            }
+          }
+        ],
+        "id": "node-1747488624654",
+        "type": "conversation",
+        "display_position": {
+          "x": -339.39176998106876,
+          "y": 2238.218940239644
+        },
+        "instruction": {
+          "type": "prompt",
+          "text": "## OBJECTIVES:\n    - Collect the date and time of the booking to be modified/cancelled.\n## Instructions:\n    1. **Ask for customer's booking details**:\n        - Ask for the date and time of their existing reservation.\n\n## Prohibited Actions:\n    **Under no circumstances you should do the following**:\n        - Failing to collect or confirm the booking date and time.\n        - Processing cancellation/modification without proper verification.\n        - Making assumptions about which booking to modify.\n    \n## Additional Context:\n    - Politely request the booking details.\n    - Confirm the date and time by repeating it back.\n    - Clarify if they want to cancel or modify.\n\n## Examples:\n    - **Example for 1.1**:\n       \"Could you please provide the date and time of your existing reservation that you wish to modify or cancel?\"\n"
+        }
+      },
+      {
+        "name": "Apologise and Escalate",
+        "edges": [
+          {
+            "destination_node_id": "node-1747488624654",
+            "id": "edge-1747488722473",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "After apologizing and collecting callback details, transition to Collect Callback Date and Time"
+            }
+          }
+        ],
+        "id": "node-1747488722473",
+        "type": "conversation",
+        "display_position": {
+          "x": -377.24299834370515,
+          "y": 1661.4687986379922
+        },
+        "instruction": {
+          "type": "prompt",
+          "text": "## OBJECTIVES:\n    - Inform the customer about the escalation process for their complaint.\n## Instructions:\n    1. **Inform the prospect/customer about the complaint handling process**:\n            1.1 Inform the customer about how their complaint will be addressed.\n        **Next step**:\n            1.3 Collect their contact details for follow-up.\n## Prohibited Actions:\n    **Under no circumstances you should do the following**:\n        - Saying any of the following words: ignored, rejected, fault\n        - Making promises that cannot be kept\n       \n## Additional Context:\n    - Apologize sincerely for their negative experience.\n    - Explain the escalation process clearly.\n    - Assure them that appropriate action will be taken.\n     \n## Examples:\n    - Example for 1.1:\n        - \"I sincerely apologize for your experience. Your feedback is important to us. I'll escalate this matter to our restaurant manager at {{selected_outlet}} immediately. They will review this and contact you within 24 hours. May I collect your contact details to ensure proper follow-up?\"\n"
+        }
+      },
+      {
+        "name": "Collect Date and Time(new Booking)",
+        "edges": [
+          {
+            "destination_node_id": "node-1747488941426",
+            "id": "edge-1747488836440",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "When the user provides a valid booking date and time, transition to Collect Pax Size"
+            }
+          }
+        ],
+        "id": "node-1747488836440",
+        "type": "conversation",
+        "display_position": {
+          "x": 297.72471517836857,
+          "y": 2339.1889575142736
+        },
+        "instruction": {
+          "type": "prompt",
+          "text": "## OBJECTIVES:\n    - Collect the date and time for the new booking.\n## Instructions:\n    1. **Ask for customer's preferred date and time**:\n\n## Prohibited Actions:\n    **Under no circumstances you should do the following**:\n        - Failing to collect or confirm the customer's preferred date and time.\n        - Collecting incorrect date format.\n        - Proceeding without checking availability.\n    \n## Additional Context:\n    - Request date in DD/MM/YYYY format.\n    - Request time as lunch or dinner with specific hour if available.\n    - Confirm the booking details by repeating them back.\n\n## Examples:\n    - **Example for 1.1**:\n       \"What date and time would you like to make your reservation for? Please specify the date in day/month/year format and whether you prefer lunch or dinner.\"\n"
+        }
+      },
+      {
+        "name": "Collect Pax Size",
+        "edges": [
+          {
+            "destination_node_id": "node-1747489049480",
+            "id": "edge-1747488941426",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "hen the user provides the number of guests, transition to Confirm Final Changes"
+            }
+          }
+        ],
+        "id": "node-1747488941426",
+        "type": "conversation",
+        "display_position": {
+          "x": 289.7450631134646,
+          "y": 2932.6763587380315
+        },
+        "instruction": {
+          "type": "prompt",
+          "text": "## OBJECTIVES:\n    - Collect the number of guests for the booking.\n## Instructions:\n    1. **Ask for customer's party size**:\n\n## Prohibited Actions:\n    **Under no circumstances you should do the following**:\n        - Failing to collect or confirm the number of guests.\n        - Proceeding with an unrealistic party size without verification.\n    \n## Additional Context:\n    - Ask for total number of guests, including adults and children.\n    - Confirm the party size by repeating it back.\n    - If party size is unusually large (>15), verify if special arrangements are needed.\n\n## Examples:\n    - **Example for 1.1**:\n       \"How many guests will be joining you for this reservation? Please include both adults and children in the total.\"\n"
+        }
+      },
+      {
+        "name": "Confirm Final Changes",
+        "edges": [
+          {
+            "destination_node_id": "node-1747489167736",
+            "id": "edge-1747489049480",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "When the user confirms all details, transition to End"
+            }
+          }
+        ],
+        "id": "node-1747489049480",
+        "type": "conversation",
+        "display_position": {
+          "x": 316.3329199663698,
+          "y": 3700.9884629724565
+        },
+        "instruction": {
+          "type": "prompt",
+          "text": "## OBJECTIVES:\n    - Inform the customer about the final booking details and confirm.\n## Instructions:\n    1. **Inform the prospect/customer about the final booking details**:\n            1.1 Summarize all booking details for confirmation.\n        **Next step**:\n            1.3 Process the booking after confirmation.\n## Prohibited Actions:\n    **Under no circumstances you should do the following**:\n        - Saying any of the following words: problem, issue, concern\n        - Processing the booking without explicit confirmation\n       \n## Additional Context:\n    - Provide a complete summary of all booking details.\n    - Ask for explicit confirmation before finalizing.\n     \n## Examples:\n    - Example for 1.1:\n        - \"To confirm, you're booking a table for {{party_size}} guests at our {{selected_outlet}} location in {{city}} on {{date}} at {{time}}. Is all this information correct? Once you confirm, I'll process your reservation.\"\n"
+        }
+      },
+      {
+        "name": "End Call",
+        "id": "node-1747489120536",
+        "type": "end",
+        "display_position": {
+          "x": 419.39143112358863,
+          "y": 5097.039528745406
+        },
+        "instruction": {
+          "type": "prompt",
+          "text": "Politely end the call"
+        }
+      },
+      {
+        "name": "END",
+        "edges": [
+          {
+            "destination_node_id": "node-1747489120536",
+            "id": "edge-1747489167737",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "Conversation is complete. No further transition"
+            }
+          }
+        ],
+        "id": "node-1747489167736",
+        "type": "conversation",
+        "display_position": {
+          "x": 332.22586067243975,
+          "y": 4472.753875855893
+        },
+        "instruction": {
+          "type": "prompt",
+          "text": "## OBJECTIVES:\n    - Inform the customer about the successful booking/modification/cancellation.\n## Instructions:\n    1. **Inform the prospect/customer about the successful transaction**:\n            1.1 Inform the customer their request has been processed successfully.\n        **Next step**:\n            1.3 Thank the customer and conclude the conversation.\n## Prohibited Actions:\n    **Under no circumstances you should do the following**:\n        - Saying any of the following words: issue, problem, error\n        - Adding new information that wasn't previously discussed\n       \n## Additional Context:\n    - Provide any relevant confirmation numbers or references.\n    - Thank them for choosing Barbeque Nation.\n    - Wish them a pleasant dining experience if applicable.\n     \n## Examples:\n    - Example for 1.1:\n        - \"Great! Your {{transaction_type}} has been successfully processed. Your confirmation number is {{confirmation_number}}. Thank you for choosing Barbeque Nation. We look forward to serving you {{if_reservation: on {{date}} at {{time}}}}. Is there anything else I can assist you with today?\"\n"
+        }
+      },
+      {
+        "name": "Collect Date and Time(For Cancellation/Modification)",
+        "edges": [
+          {
+            "destination_node_id": "node-1747489307595",
+            "id": "edge-1747489229656",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "When the user provides the date and time of their existing booking, transition to Collect Name under Reservation"
+            }
+          }
+        ],
+        "id": "node-1747489229656",
+        "type": "conversation",
+        "display_position": {
+          "x": 1175.759644156415,
+          "y": 2395.0943043400916
+        },
+        "instruction": {
+          "type": "prompt",
+          "text": "## OBJECTIVES:\n    - Collect the date and time of the existing booking.\n## Instructions:\n    1. **Ask for customer's existing booking date and time**:\n\n## Prohibited Actions:\n    **Under no circumstances you should do the following**:\n        - Failing to collect or confirm the customer's booking date and time.\n        - Collecting incorrect date format.\n        - Proceeding without clear date and time information.\n    \n## Additional Context:\n    - Request date in DD/MM/YYYY format.\n    - Request time as lunch or dinner with specific hour if available.\n    - Confirm the booking details by repeating them back.\n\n## Examples:\n    - **Example for 1.1**:\n       \"Could you please provide the date and time of your existing reservation? Please specify the date in day/month/year format and whether it's for lunch or dinner.\"\n"
+        }
+      },
+      {
+        "name": "Collect name under reservation",
+        "edges": [
+          {
+            "destination_node_id": "node-1747489438274",
+            "id": "edge-1747489307595",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "If the user wants to cancel transition to Cancellation branch\n"
+            }
+          },
+          {
+            "destination_node_id": "node-1747489531126",
+            "id": "edge-1747490374620",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "If the user wants to modify, transition to Collect New Date & Time"
+            }
+          }
+        ],
+        "id": "node-1747489307595",
+        "type": "conversation",
+        "display_position": {
+          "x": 1181.2785517738116,
+          "y": 2981.037815234793
+        },
+        "instruction": {
+          "type": "prompt",
+          "text": "## OBJECTIVES:\n    - Collect the phone number and name of the customer with the existing booking.\n    - Confirm the phone number and name of the customer.\n\n## Instructions:\n    1. **Ask for customer name**:\n        1.1 **Ask the name under which the booking was made**\n        **Next Steps**:\n            1.3 If the customer refuses to provide the name, move to 2.1\n    2. **Ask for the phone number**\n        2.1 **Ask for the phone number in 10 digit format.**\n        **Strictly verify the following once the phone number is collected**:\n            - Trigger the **validate_phone_number** tool with the phone number to validate it.\n            - Check if the number is not valid, then move to step 2.1\n        ** Next Steps **:\n            2.2 If the phone number is not valid, ask them to provide a valid phone number.\n            2.3 If the phone number is valid, then move to step 3.1\n    3 **Confirm the phone number and name**:\n        3.1 Confirm the guest's 10 digit phone number and name and asking if they are correct.\n            - Update the name and phone number if they are not collected correctly.\n\n## Prohibited Actions:\n    **Under no circumstances you should do the following**:\n        - Not collecting name and phone number of the customer.\n        - Fail to collect the customer's 10 digit phone number\n        - Not confirming the booking exists before proceeding\n\n## Additional Context:\n    - Explain that this information is needed to locate their booking\n    - Provide all responses in natural sentences, not as lists \n    \n## Examples:\n    - **Example for 1.1**:\n       \"Could you please provide the name under which the reservation was made?\"\n    - **Example for 2.1**:\n       \"And may I have the 10-digit phone number associated with this booking?\"\n"
+        }
+      },
+      {
+        "name": "Cancellation Branch",
+        "edges": [
+          {
+            "destination_node_id": "node-1747489492195",
+            "id": "edge-1747489438274",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "When cancellation is confirmed, transition to Cancel Reservation"
+            }
+          }
+        ],
+        "id": "node-1747489438274",
+        "type": "conversation",
+        "display_position": {
+          "x": 1798.4180765109247,
+          "y": 3046.815889550182
+        },
+        "instruction": {
+          "type": "prompt",
+          "text": "## OBJECTIVES:\n    - Inform the customer about the cancellation process.\n## Instructions:\n    1. **Inform the prospect/customer about the cancellation process**:\n            1.1 Inform the customer about how their booking will be cancelled.\n        **Next step**:\n            1.3 Confirm cancellation and provide cancellation reference.\n## Prohibited Actions:\n    **Under no circumstances you should do the following**:\n        - Saying any of the following words: penalty, inconvenience, problem\n        - Processing cancellation without confirming details\n       \n## Additional Context:\n    - Ensure all booking details are correctly identified before cancelling.\n    - Provide clear confirmation when cancellation is complete.\n     \n## Examples:\n    - Example for 1.1:\n        - \"Thank you for providing your booking details. I've located your reservation for {{date}} at {{time}} at our {{selected_outlet}} location. I can cancel this reservation for you. Would you like me to proceed with the cancellation?\"\n"
+        }
+      },
+      {
+        "name": "Cancell Reservation",
+        "edges": [
+          {
+            "destination_node_id": "node-1747489049480",
+            "id": "edge-1747489492195",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "After confirming cancellation, transition to Confirm Final Changes"
+            }
+          }
+        ],
+        "id": "node-1747489492195",
+        "type": "conversation",
+        "display_position": {
+          "x": 2321.2501768384404,
+          "y": 3051.444323309974
+        },
+        "instruction": {
+          "type": "prompt",
+          "text": "## OBJECTIVES:\n    - Inform the customer about the successful cancellation.\n## Instructions:\n    1. **Inform the prospect/customer about the successful cancellation**:\n            1.1 Inform the customer that their booking has been cancelled.\n        **Next step**:\n            1.3 Ask if there's anything else they need assistance with.\n## Prohibited Actions:\n    **Under no circumstances you should do the following**:\n        - Saying any of the following words: fee, charge, penalty\n        - Expressing disappointment about the cancellation\n       \n## Additional Context:\n    - Provide a cancellation confirmation number if applicable.\n    - Thank them for choosing Barbeque Nation.\n     \n## Examples:\n    - Example for 1.1:\n        - \"Your reservation for {{date}} at {{time}} at our {{selected_outlet}} location has been successfully cancelled. Your cancellation reference number is {{ref_number}}. Thank you for letting us know. Is there anything else I can assist you with today?\"\n"
+        }
+      },
+      {
+        "name": "Modification branch",
+        "edges": [
+          {
+            "destination_node_id": "node-1747489049480",
+            "id": "edge-1747489531126",
+            "transition_condition": {
+              "type": "prompt",
+              "prompt": "When the user provides a new date and time for modification, transition to Confirm Final Changes"
+            }
+          }
+        ],
+        "id": "node-1747489531126",
+        "type": "conversation",
+        "display_position": {
+          "x": 1187.0209584545737,
+          "y": 3600.2465152190584
+        },
+        "instruction": {
+          "type": "prompt",
+          "text": "## OBJECTIVES:\n    - Collect the new date and time for the modified booking.\n## Instructions:\n    1. **Ask for customer's preferred new date and time**:\n\n## Prohibited Actions:\n    **Under no circumstances you should do the following**:\n        - Failing to collect or confirm the customer's new preferred date and time.\n        - Collecting incorrect date format.\n        - Modifying without verifying availability.\n    \n## Additional Context:\n    - Request new date in DD/MM/YYYY format.\n    - Request new time as lunch or dinner with specific hour if available.\n    - Confirm the new booking details by repeating them back.\n\n## Examples:\n    - **Example for 1.1**:\n       \"What new date and time would you prefer for your reservation? Please specify the date in day/month/year format and whether it's for lunch or dinner.\"\n"
+        }
+      }
+    ],
+    "start_node_id": "node-1747487627212",
+    "start_speaker": "agent",
+    "model_choice": {
+      "type": "cascading",
+      "model": "gpt-4.1"
+    },
+    "knowledge_base_ids": [],
+    "begin_tag_display_position": {
+      "x": 121.23076923076923,
+      "y": 333
+    },
+    "is_published": false
+  },
+  "llmURL": null
+}
