@@ -31,8 +31,20 @@ The agent guides users step-by-step through booking a table, modifying existing 
 ## Submission Links
 
 - **Knowledge Base API Endpoints:** N/A (used Retell AI’s built-in KB by Uploading Files directly)
-- **Chatbot Link:** 
+- **Chatbot Link:** https://agency-zu7o11.chat-dash.com/prototype/6829d54a079fdb17d516ec05   (Configured Retell AI Agent to ChatDash for a prototype Link)
 - **Agent Linked Phone Number:** +1 (724) 414-2167
+
+
+## Retell AI Identifiers
+
+- **Agent ID:** `agent_5dcff38c33a28144f38945686d`
+- **Conversation Flow ID:** `conversation_flow_b4fbdbd6b0fd`
+- **Knowledge Base IDs:**
+  - `knowledge_base_dc1750652380a5f0`
+  - `knowledge_base_90555ff7f7d1e619`
+  - `knowledge_base_967e560ad8ea1e4f`
+- **API Key:** `key_1b16a6eb498744bf1bf2ac43a358`
+
 
 ## Technical Documentation
 
