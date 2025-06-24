@@ -49,5 +49,5 @@ The agent guides users step-by-step through booking a table, modifying existing 
 ## Technical Documentation
 
 - The agent’s architecture leverages a state-machine model, with each node corresponding to a step in the conversation.
-- All prompts and transitions are managed within Retell AI’s platform; no external backend or custom API is used.
+- All prompts and transitions are managed within Retell AI’s platform.
 
